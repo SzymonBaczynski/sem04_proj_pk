@@ -1,5 +1,8 @@
 #pragma once
+#include <vector>
+#include <iostream>
 #include "element.h"
+
 
 class macierz 
 {
@@ -12,7 +15,10 @@ public:
 	macierz(double firstElVal);
 
 	void addRow();
+	void addRow(std::vector<double> const &newElVal);
 	void addColumn();
+	void addColumn(std::vector<double> const& newElVal);
+
 
 	void deleteRow();
 	void deleteCol();

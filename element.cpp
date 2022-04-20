@@ -11,6 +11,11 @@ double element::getVal()
 	return value_;
 }
 
+void element::setVal(double newVal)
+{
+	value_ = newVal;
+}
+
 element* element::getUpper()
 {
 	return upperNeighbour_;

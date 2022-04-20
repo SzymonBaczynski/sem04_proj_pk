@@ -13,6 +13,7 @@ public:
 	element(double value, element* up, element* right, element* down, element* left);
 
 	double getVal();
+	void setVal(double newVal);
 
 	element* getUpper();
 	element* getRight();

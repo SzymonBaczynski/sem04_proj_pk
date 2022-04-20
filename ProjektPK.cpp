@@ -10,14 +10,14 @@ int main()
 
     macierz m = macierz(10.8);
     m.addColumn();
-    m.addColumn();
-    m.addColumn();
+    m.addColumn({34});
+    m.addColumn({65});
+
+    std::vector<double> row01{ 34.9, 12, 43.45, 98.99 };
+    m.addRow(row01);
+    m.addRow({ 30.9, 13, 52.45, 11.99 });
     m.addRow();
     m.addRow();
-    m.addRow();
-    m.addRow();
-    m.addColumn();
-    m.addColumn();
 
     m.writeOut();
     std::cout << "\n";

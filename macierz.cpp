@@ -1,5 +1,5 @@
-#include <iostream>
 #include "macierz.h"
+
 
 macierz::macierz(double firstElVal) : firstElement_(new element(firstElVal)),
 										rowNumber_(1), colNumber_(1){}
@@ -10,14 +10,14 @@ void macierz::addRow()
 	while (firstElOfLastRow->getDown() != nullptr)
 		firstElOfLastRow = firstElOfLastRow->getDown();
 
-	
+
 	element* lastRowEl = firstElOfLastRow;
 	element* newEl;
 	element* lastNewEl = nullptr;
 
 	for (int i = 0; i < colNumber_; i++)
 	{
-		newEl = new element(i); //wartosc do zmainy
+		newEl = new element(0); //wartosc do zmainy
 
 		newEl->setUpper(lastRowEl);
 		lastRowEl->setDown(newEl);
@@ -34,6 +34,28 @@ void macierz::addRow()
 	rowNumber_++;
 }
 
+void macierz::addRow(std::vector<double> const &newElVal)
+{
+	if (newElVal.size() != colNumber_)
+		return;
+	
+	this->addRow();
+
+	element* firstElOfLastRow = firstElement_;
+	while (firstElOfLastRow->getDown() != nullptr)
+		firstElOfLastRow = firstElOfLastRow->getDown();
+
+	element* lastRowEl = firstElOfLastRow;
+
+	for (double val : newElVal)
+	{
+		lastRowEl->setVal(val);
+		lastRowEl = lastRowEl->getRight();
+	}
+	
+
+}
+
 void macierz::addColumn()
 {
 	element* firstElOfLastCol = firstElement_;
@@ -46,7 +68,7 @@ void macierz::addColumn()
 
 	for (int i = 0; i < rowNumber_; i++)
 	{
-		newEl = new element(i); // wartosc do zmainy
+		newEl = new element(0); // wartosc do zmainy
 
 		newEl->setLeft(lastColEl);
 		lastColEl->setRight(newEl);
@@ -60,6 +82,26 @@ void macierz::addColumn()
 		lastColEl = lastColEl->getDown();
 	}
 	colNumber_++;
+}
+
+void macierz::addColumn(std::vector<double> const& newElVal)
+{
+	if (newElVal.size() != rowNumber_)
+		return;
+
+	this->addColumn();
+
+	element* firstElOfLastCol = firstElement_;
+	while (firstElOfLastCol->getRight() != nullptr)
+		firstElOfLastCol = firstElOfLastCol->getRight();
+
+	element* lastColEl = firstElOfLastCol;
+
+	for (double val : newElVal)
+	{
+		lastColEl->setVal(val);
+		lastColEl = lastColEl->getDown();
+	}
 }
 
 void macierz::deleteRow()
