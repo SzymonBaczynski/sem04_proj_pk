@@ -1,0 +1,10 @@
+
+TEMAT PROJEKTU 7
+
+Zaimplementuj macierz liczbow¹(wiêc 2 - wymiarow¹) w postaci dwuwymiarowej listy
+dynamicznej.Oznacza to, ¿e ka¿dy element posiada 4 wskaŸniki, na s¹siaduj¹ce w poziomie i
+pionie elementy.
+Przeci¹¿yj operatory : +, - i * .
+Napisz metodê(-y), umo¿liwiaj¹ce dynamiczne zmienianie liczby wierszy i / lub kolumn
+macierzy, czyli bez przekopiowywania jej elementów do nowego obiektu.
+Zak³adamy, ¿e nowe lub kasowane wiersze / kolumny le¿¹ tylko na brzegach.
