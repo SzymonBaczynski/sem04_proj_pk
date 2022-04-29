@@ -1,23 +1,23 @@
-#include "macierz.h"
+#include "Macierz.h"
 
 
-macierz::macierz(double firstElVal) : firstElement_(new element(firstElVal)),
+Macierz::Macierz(double firstElVal) : firstElement_(new Element(firstElVal)),
 										rowNumber_(1), colNumber_(1){}
 
-void macierz::addRow()
+void Macierz::addRow()
 {
-	element* firstElOfLastRow = firstElement_;
+	Element* firstElOfLastRow = firstElement_;
 	while (firstElOfLastRow->getDown() != nullptr)
 		firstElOfLastRow = firstElOfLastRow->getDown();
 
 
-	element* lastRowEl = firstElOfLastRow;
-	element* newEl;
-	element* lastNewEl = nullptr;
+	Element* lastRowEl = firstElOfLastRow;
+	Element* newEl;
+	Element* lastNewEl = nullptr;
 
 	for (int i = 0; i < colNumber_; i++)
 	{
-		newEl = new element(0); //wartosc do zmainy
+		newEl = new Element(0); //wartosc do zmainy
 
 		newEl->setUpper(lastRowEl);
 		lastRowEl->setDown(newEl);
@@ -34,18 +34,18 @@ void macierz::addRow()
 	rowNumber_++;
 }
 
-void macierz::addRow(std::vector<double> const &newElVal)
+void Macierz::addRow(std::vector<double> const &newElVal)
 {
 	if (newElVal.size() != colNumber_)
 		return;
 	
 	this->addRow();
 
-	element* firstElOfLastRow = firstElement_;
+	Element* firstElOfLastRow = firstElement_;
 	while (firstElOfLastRow->getDown() != nullptr)
 		firstElOfLastRow = firstElOfLastRow->getDown();
 
-	element* lastRowEl = firstElOfLastRow;
+	Element* lastRowEl = firstElOfLastRow;
 
 	for (double val : newElVal)
 	{
@@ -56,19 +56,19 @@ void macierz::addRow(std::vector<double> const &newElVal)
 
 }
 
-void macierz::addColumn()
+void Macierz::addColumn()
 {
-	element* firstElOfLastCol = firstElement_;
+	Element* firstElOfLastCol = firstElement_;
 	while (firstElOfLastCol->getRight() != nullptr)
 		firstElOfLastCol = firstElOfLastCol->getRight();
 
-	element* lastColEl = firstElOfLastCol;
-	element* newEl;
-	element* lastNewEl = nullptr;
+	Element* lastColEl = firstElOfLastCol;
+	Element* newEl;
+	Element* lastNewEl = nullptr;
 
 	for (int i = 0; i < rowNumber_; i++)
 	{
-		newEl = new element(0); // wartosc do zmainy
+		newEl = new Element(0); // wartosc do zmainy
 
 		newEl->setLeft(lastColEl);
 		lastColEl->setRight(newEl);
@@ -84,18 +84,18 @@ void macierz::addColumn()
 	colNumber_++;
 }
 
-void macierz::addColumn(std::vector<double> const& newElVal)
+void Macierz::addColumn(std::vector<double> const& newElVal)
 {
 	if (newElVal.size() != rowNumber_)
 		return;
 
 	this->addColumn();
 
-	element* firstElOfLastCol = firstElement_;
+	Element* firstElOfLastCol = firstElement_;
 	while (firstElOfLastCol->getRight() != nullptr)
 		firstElOfLastCol = firstElOfLastCol->getRight();
 
-	element* lastColEl = firstElOfLastCol;
+	Element* lastColEl = firstElOfLastCol;
 
 	for (double val : newElVal)
 	{
@@ -104,17 +104,17 @@ void macierz::addColumn(std::vector<double> const& newElVal)
 	}
 }
 
-void macierz::deleteRow()
+void Macierz::deleteRow()
 {
 	if (rowNumber_ == 1)
 		return;
 
-	element* firstElOfLastRow = firstElement_;
+	Element* firstElOfLastRow = firstElement_;
 	while (firstElOfLastRow->getDown() != nullptr)
 		firstElOfLastRow = firstElOfLastRow->getDown();
 
-	element* elOfLastRow = firstElOfLastRow;
-	element* nextEl;
+	Element* elOfLastRow = firstElOfLastRow;
+	Element* nextEl;
 
 	for (int i = 0; i < colNumber_; i++)
 	{
@@ -127,17 +127,17 @@ void macierz::deleteRow()
 	rowNumber_--;
 }
 
-void macierz::deleteCol()
+void Macierz::deleteCol()
 {
 	if (colNumber_ == 1)
 		return;
 
-	element* firstElOfLastCol = firstElement_;
+	Element* firstElOfLastCol = firstElement_;
 	while (firstElOfLastCol->getRight() != nullptr)
 		firstElOfLastCol = firstElOfLastCol->getRight();
 
-	element* elOfLastCol = firstElOfLastCol;
-	element* nextEl;
+	Element* elOfLastCol = firstElOfLastCol;
+	Element* nextEl;
 
 	for (int i = 0; i < rowNumber_; i++)
 	{
@@ -150,10 +150,10 @@ void macierz::deleteCol()
 	colNumber_--;
 }
 
-void macierz::writeOut()
+void Macierz::writeOut()
 {
-	element* firstElInRow = firstElement_;
-	element* currentElement = firstElement_;
+	Element* firstElInRow = firstElement_;
+	Element* currentElement = firstElement_;
 
 	while (firstElInRow != nullptr)
 	{
@@ -168,9 +168,9 @@ void macierz::writeOut()
 	}
 }
 
-element* macierz::writeOutEl(int row, int col)
+Element* Macierz::writeOutEl(int row, int col)
 {
-	element* tempEl = firstElement_;
+	Element* tempEl = firstElement_;
 
 	for (int r = 1; r < row; r++)
 	{
@@ -183,7 +183,116 @@ element* macierz::writeOutEl(int row, int col)
 	}
 
 	return tempEl;
+}
 
+double Macierz::getElVal(int row, int col)
+{
+	Element* tempEl = this->writeOutEl(row, col);
+	return tempEl->getVal();
+}
+
+Macierz Macierz::operator+(Macierz& ingredient)
+{
+	if (rowNumber_ != ingredient.rowNumber_ && colNumber_ != ingredient.colNumber_)
+		return Macierz(0);
+
+	Macierz sum = Macierz(0);
+
+	for (int r = 1; r < rowNumber_; r++)
+	{
+		sum.addRow();
+	}
+	for (int c = 1; c < colNumber_; c++)
+	{
+		sum.addColumn();
+	}
+
+	//std::cout << '\n';
+	//sum.writeOut();
+	//std::cout << '\n';
+
+	Element* tempEl;
+
+	for (int r = 1; r <= rowNumber_; r++) //wsp. elementów od 1 do rowNumber_
+	{
+		for (int c = 1; c <= colNumber_; c++) //wsp. elementów od 1 do colNumber_
+		{
+			tempEl = sum.writeOutEl(r, c);
+
+			//std::cout << "row " << r << "col " << c << "element val: " << tempEl->getVal() << std::endl;
+
+			tempEl->setVal((this->writeOutEl(r, c))->getVal() + (ingredient.writeOutEl(r, c))->getVal());
+
+			//std::cout << "row " << r << "col " << c << "element val: " << tempEl->getVal() << "\n\n";
+		}
+	}
+	return sum;
+
+}
+
+Macierz Macierz::operator-(Macierz& ingredient)
+{
+	if (rowNumber_ != ingredient.rowNumber_ && colNumber_ != ingredient.colNumber_)
+		return Macierz(0);
+
+	Macierz sum = Macierz(0);
+
+	for (int r = 1; r < rowNumber_; r++)
+	{
+		sum.addRow();
+	}
+	for (int c = 1; c < colNumber_; c++)
+	{
+		sum.addColumn();
+	}
+
+	Element* tempEl;
+
+	for (int r = 1; r <= rowNumber_; r++) //wsp. elementów od 1 do rowNumber_
+	{
+		for (int c = 1; c <= colNumber_; c++) //wsp. elementów od 1 do colNumber_
+		{
+			tempEl = sum.writeOutEl(r, c);
+			tempEl->setVal((this->writeOutEl(r, c))->getVal() - (ingredient.writeOutEl(r, c))->getVal());
+		}
+	}
+	return sum;
+}
+
+Macierz Macierz::operator*(Macierz& ingredient)
+{
+	if (this->colNumber_ != ingredient.rowNumber_)
+		return Macierz(0);
+
+	Macierz product = Macierz(0);
+
+	for (int r = 1; r < rowNumber_; r++)
+	{
+		product.addRow();
+	}
+	for (int c = 1; c < ingredient.colNumber_; c++)
+	{
+		product.addColumn();
+	}
+
+
+	Element* tempEl;
+
+	for (int r = 1; r <= product.rowNumber_; r++) //wsp. elementów od 1 do rowNumber_
+	{
+		for (int c = 1; c <= product.colNumber_; c++) //wsp. elementów od 1 do colNumber_
+		{
+			tempEl = product.writeOutEl(r, c);
+			double elVal = 0;
+
+			for (int i = 0; i < this->colNumber_; i++)
+			{
+				elVal += (this->getElVal(r, i + 1) * ingredient.getElVal(i + 1, c));
+			}
+			tempEl->setVal(elVal);
+		}
+	}
+	return product;
 }
 
 

@@ -1,29 +1,29 @@
 #pragma once
-class element
+class Element
 {
 private:
 	double value_;
-	element* upperNeighbour_;
-	element* rightNeighbour_;
-	element* downNeighbour_;
-	element* leftNeighbour_;
+	Element* upperNeighbour_;
+	Element* rightNeighbour_;
+	Element* downNeighbour_;
+	Element* leftNeighbour_;
 
 public:
-	element(double value);
-	element(double value, element* up, element* right, element* down, element* left);
+	Element(double value);
+	Element(double value, Element* up, Element* right, Element* down, Element* left);
 
 	double getVal();
 	void setVal(double newVal);
 
-	element* getUpper();
-	element* getRight();
-	element* getDown();
-	element* getLeft();
+	Element* getUpper();
+	Element* getRight();
+	Element* getDown();
+	Element* getLeft();
 
-	void setUpper(element* upperNeighbour);
-	void setRight(element* rightNeighbour);
-	void setDown(element* downNeighbour);
-	void setLeft(element* leftNeighbour);
+	void setUpper(Element* upperNeighbour);
+	void setRight(Element* rightNeighbour);
+	void setDown(Element* downNeighbour);
+	void setLeft(Element* leftNeighbour);
 	
 };
 

@@ -1,18 +1,18 @@
 #pragma once
 #include <vector>
 #include <iostream>
-#include "element.h"
+#include "Element.h"
 
 
-class macierz 
+class Macierz 
 {
 private:
-	element* firstElement_;
+	Element* firstElement_;
 	int rowNumber_ = 0;
 	int colNumber_ = 0;
 
 public:
-	macierz(double firstElVal);
+	Macierz(double firstElVal);
 
 	void addRow();
 	void addRow(std::vector<double> const &newElVal);
@@ -24,8 +24,16 @@ public:
 	void deleteCol();
 
 	void writeOut();
-	element* writeOutEl(int row, int col);
+	Element* writeOutEl(int row, int col);
+	double getElVal(int row, int col);
 
-	
+	// operatory
+
+	Macierz operator+(Macierz& ingredient);
+	Macierz operator-(Macierz& ingredient);
+
+	Macierz operator*(Macierz& ingredient); 
+
+	// TODO: mno¿enie skalar macierz
 };
 

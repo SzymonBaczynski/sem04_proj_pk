@@ -139,16 +139,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="element.cpp" />
-    <ClCompile Include="macierz.cpp" />
+    <ClCompile Include="Element.cpp" />
+    <ClCompile Include="Macierz.cpp" />
     <ClCompile Include="ProjektPK.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="notes.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="element.h" />
-    <ClInclude Include="macierz.h" />
+    <ClInclude Include="Element.h" />
+    <ClInclude Include="Macierz.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

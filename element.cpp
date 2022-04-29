@@ -1,57 +1,57 @@
-#include "element.h"
+#include "Element.h"
 
-element::element(double value) : value_(value), upperNeighbour_(nullptr), rightNeighbour_(nullptr),
+Element::Element(double value) : value_(value), upperNeighbour_(nullptr), rightNeighbour_(nullptr),
                                  downNeighbour_(nullptr), leftNeighbour_(nullptr) {}
 
-element::element(double value, element* up, element* right, element* down, element* left) : value_(value),
+Element::Element(double value, Element* up, Element* right, Element* down, Element* left) : value_(value),
 	upperNeighbour_(up), rightNeighbour_(right), downNeighbour_(down), leftNeighbour_(left) {}
 
-double element::getVal()
+double Element::getVal()
 {
 	return value_;
 }
 
-void element::setVal(double newVal)
+void Element::setVal(double newVal)
 {
 	value_ = newVal;
 }
 
-element* element::getUpper()
+Element* Element::getUpper()
 {
 	return upperNeighbour_;
 }
 
-element* element::getRight()
+Element* Element::getRight()
 {
 	return rightNeighbour_;
 }
 
-element* element::getDown()
+Element* Element::getDown()
 {
 	return downNeighbour_;
 }
 
-element* element::getLeft()
+Element* Element::getLeft()
 {
 	return leftNeighbour_;
 }
 
-void element::setUpper(element* upperNeighbour)
+void Element::setUpper(Element* upperNeighbour)
 {
 	upperNeighbour_ = upperNeighbour;
 }
 
-void element::setRight(element* rightNeighbour)
+void Element::setRight(Element* rightNeighbour)
 {
 	rightNeighbour_ = rightNeighbour;
 }
 
-void element::setDown(element* downNeighbour)
+void Element::setDown(Element* downNeighbour)
 {
 	downNeighbour_ = downNeighbour;
 }
 
-void element::setLeft(element* leftNeighbour)
+void Element::setLeft(Element* leftNeighbour)
 {
 	leftNeighbour_ = leftNeighbour;
 }

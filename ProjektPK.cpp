@@ -8,7 +8,7 @@ int main()
 {
     std::cout << "Hello World!\n";
 
-    macierz m = macierz(10.8);
+    Macierz m = Macierz(10.8);
     m.addColumn();
     m.addColumn({34});
     m.addColumn({65});
@@ -35,6 +35,39 @@ int main()
 
 
     m.writeOut();
+
+    
+    std::cout << "\n";
+
+    Macierz m1 = Macierz(11);
+    m1.addRow({ 2 });
+    m1.addRow({ 2 });
+    m1.addRow({ 2 });
+    m1.addColumn({ 2,2,0,2 });
+    m1.addColumn({ 2,2,0,2 });
+    m1.addColumn({ 2,2,0,2 });
+
+    Macierz m2 = Macierz(11.43);
+    m2.addRow({ 2 });
+    m2.addRow({ 2 });
+    m2.addRow({ 2 });
+    m2.addColumn({ 2,2,2,12 });
+    m2.addColumn({ 0,0,0,12 });
+    m2.addColumn({ 2,6,2,12 });
+
+    std::cout << "\n";
+    m1.writeOut();
+
+       
+    std::cout << "\n";
+    m2.writeOut();
+
+    Macierz m3 = m1 * m2;
+
+    std::cout << "\n";
+    m3.writeOut();
+
+
 
     //element* e = m.writeOutEl(3, 4);
     //std::cout << "\n element:"  << e->getVal();
