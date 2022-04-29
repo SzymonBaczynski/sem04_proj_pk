@@ -150,7 +150,7 @@ void Macierz::deleteCol()
 	colNumber_--;
 }
 
-void Macierz::writeOut()
+void Macierz::writeOut() const
 {
 	Element* firstElInRow = firstElement_;
 	Element* currentElement = firstElement_;
@@ -168,7 +168,7 @@ void Macierz::writeOut()
 	}
 }
 
-Element* Macierz::writeOutEl(int row, int col)
+Element* Macierz::writeOutEl(int row, int col) const
 {
 	Element* tempEl = firstElement_;
 
@@ -185,7 +185,7 @@ Element* Macierz::writeOutEl(int row, int col)
 	return tempEl;
 }
 
-double Macierz::getElVal(int row, int col)
+double Macierz::getElVal(int row, int col) const
 {
 	Element* tempEl = this->writeOutEl(row, col);
 	return tempEl->getVal();

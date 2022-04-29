@@ -6,7 +6,7 @@ Element::Element(double value) : value_(value), upperNeighbour_(nullptr), rightN
 Element::Element(double value, Element* up, Element* right, Element* down, Element* left) : value_(value),
 	upperNeighbour_(up), rightNeighbour_(right), downNeighbour_(down), leftNeighbour_(left) {}
 
-double Element::getVal()
+double Element::getVal() const
 {
 	return value_;
 }
@@ -16,22 +16,22 @@ void Element::setVal(double newVal)
 	value_ = newVal;
 }
 
-Element* Element::getUpper()
+Element* Element::getUpper() const
 {
 	return upperNeighbour_;
 }
 
-Element* Element::getRight()
+Element* Element::getRight() const
 {
 	return rightNeighbour_;
 }
 
-Element* Element::getDown()
+Element* Element::getDown() const
 {
 	return downNeighbour_;
 }
 
-Element* Element::getLeft()
+Element* Element::getLeft() const
 {
 	return leftNeighbour_;
 }

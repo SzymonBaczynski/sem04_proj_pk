@@ -23,9 +23,9 @@ public:
 	void deleteRow();
 	void deleteCol();
 
-	void writeOut();
-	Element* writeOutEl(int row, int col);
-	double getElVal(int row, int col);
+	void writeOut() const;
+	Element* writeOutEl(int row, int col) const;
+	double getElVal(int row, int col) const;
 
 	// operatory
 

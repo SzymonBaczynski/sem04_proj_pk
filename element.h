@@ -12,13 +12,13 @@ public:
 	Element(double value);
 	Element(double value, Element* up, Element* right, Element* down, Element* left);
 
-	double getVal();
+	double getVal() const;
 	void setVal(double newVal);
 
-	Element* getUpper();
-	Element* getRight();
-	Element* getDown();
-	Element* getLeft();
+	Element* getUpper() const;
+	Element* getRight() const;
+	Element* getDown() const;
+	Element* getLeft() const;
 
 	void setUpper(Element* upperNeighbour);
 	void setRight(Element* rightNeighbour);
