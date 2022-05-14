@@ -295,5 +295,32 @@ Macierz Macierz::operator*(const Macierz& ingredient) const
 	return product;
 }
 
+Macierz Macierz::operator*(const double d) const
+{
+	Macierz product = Macierz(0);
+
+	for (int r = 1; r < rowNumber_; r++)
+	{
+		product.addRow();
+	}
+	for (int c = 1; c < colNumber_; c++)
+	{
+		product.addColumn();
+	}
+
+
+	for (int r = 1; r <= product.rowNumber_; r++) //wsp. elementów od 1 do rowNumber_
+	{
+		for (int c = 1; c <= product.colNumber_; c++) //wsp. elementów od 1 do colNumber_
+		{
+
+			product.writeOutEl(r, c)->setVal(getElVal(r, c) * d);
+		}
+	}
+	return product;
+
+
+}
+
 
 

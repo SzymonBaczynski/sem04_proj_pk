@@ -31,7 +31,9 @@ public:
 
 	Macierz operator+(const Macierz& ingredient) const;
 	Macierz operator-(const Macierz& ingredient) const;
-	Macierz operator*(const Macierz& ingredient) const; 
+	Macierz operator*(const Macierz& ingredient) const;
+	Macierz operator*(const double d) const;
+	
 
 	// TODO: mno¿enie skalar macierz
 	// TODO: dekonstruktor

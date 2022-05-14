@@ -67,6 +67,10 @@ int main()
     std::cout << "\n";
     m3.writeOut();
 
+    m3 = m3 * 10.0;
+
+    std::cout << "\n";
+    m3.writeOut();
 
 
     //element* e = m.writeOutEl(3, 4);
