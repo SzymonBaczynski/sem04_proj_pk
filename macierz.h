@@ -29,11 +29,13 @@ public:
 
 	// operatory
 
-	Macierz operator+(Macierz& ingredient);
-	Macierz operator-(Macierz& ingredient);
-
-	Macierz operator*(Macierz& ingredient); 
+	Macierz operator+(const Macierz& ingredient) const;
+	Macierz operator-(const Macierz& ingredient) const;
+	Macierz operator*(const Macierz& ingredient) const; 
 
 	// TODO: mno¿enie skalar macierz
+	// TODO: dekonstruktor
+
+
 };
 

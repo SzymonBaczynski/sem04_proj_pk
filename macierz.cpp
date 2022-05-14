@@ -191,7 +191,7 @@ double Macierz::getElVal(int row, int col) const
 	return tempEl->getVal();
 }
 
-Macierz Macierz::operator+(Macierz& ingredient)
+Macierz Macierz::operator+(const Macierz& ingredient) const
 {
 	if (rowNumber_ != ingredient.rowNumber_ && colNumber_ != ingredient.colNumber_)
 		return Macierz(0);
@@ -230,7 +230,7 @@ Macierz Macierz::operator+(Macierz& ingredient)
 
 }
 
-Macierz Macierz::operator-(Macierz& ingredient)
+Macierz Macierz::operator-(const Macierz& ingredient) const
 {
 	if (rowNumber_ != ingredient.rowNumber_ && colNumber_ != ingredient.colNumber_)
 		return Macierz(0);
@@ -259,7 +259,7 @@ Macierz Macierz::operator-(Macierz& ingredient)
 	return sum;
 }
 
-Macierz Macierz::operator*(Macierz& ingredient)
+Macierz Macierz::operator*(const Macierz& ingredient) const
 {
 	if (this->colNumber_ != ingredient.rowNumber_)
 		return Macierz(0);
