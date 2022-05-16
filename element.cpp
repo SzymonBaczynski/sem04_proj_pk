@@ -1,10 +1,17 @@
 #include "Element.h"
+#include <iostream>
 
 Element::Element(double value) : value_(value), upperNeighbour_(nullptr), rightNeighbour_(nullptr),
                                  downNeighbour_(nullptr), leftNeighbour_(nullptr) {}
 
+Element::~Element()
+{
+	std::cout << " <del-el> ";
+}
+
+
 Element::Element(double value, Element* up, Element* right, Element* down, Element* left) : value_(value),
-	upperNeighbour_(up), rightNeighbour_(right), downNeighbour_(down), leftNeighbour_(left) {}
+                                                                                            upperNeighbour_(up), rightNeighbour_(right), downNeighbour_(down), leftNeighbour_(left) {}
 
 double Element::getVal() const
 {

@@ -1,8 +1,45 @@
 #include "Macierz.h"
 
 
+
+
 Macierz::Macierz(double firstElVal) : firstElement_(new Element(firstElVal)),
-										rowNumber_(1), colNumber_(1){}
+                                      rowNumber_(1), colNumber_(1){}
+
+Macierz::~Macierz()
+{
+	// for (int r = rowNumber_; r > 0; r--) //wsp. elementów od 1 do rowNumber_
+	// {
+	// 	for (int c = colNumber_; c > 0; c--) //wsp. elementów od 1 do colNumber_
+	// 	{	
+	// 		delete writeOutEl(r, c);
+	// 		std::cout << "usunieto el";
+	// 	}
+	// }
+
+	Element* firstElInRow = firstElement_;
+	Element* tempEl;
+	Element* tempEl2;
+	Element* currentElement = firstElement_;
+	firstElement_ = nullptr;
+
+
+	while (firstElInRow != nullptr)
+	{
+		tempEl2 = firstElInRow->getDown();
+		while (currentElement != nullptr)
+		{
+			tempEl = currentElement->getRight();
+			delete currentElement;
+			currentElement = tempEl;
+		}
+		firstElInRow = tempEl2;
+		currentElement = tempEl2;
+		currentElement = tempEl2;
+	}
+
+	std::cout << " <del-macierz> ";	
+}
 
 void Macierz::addRow()
 {
@@ -201,6 +238,7 @@ Macierz Macierz::operator+(const Macierz& ingredient) const
 	for (int r = 1; r < rowNumber_; r++)
 	{
 		sum.addRow();
+	//sum.writeOut();
 	}
 	for (int c = 1; c < colNumber_; c++)
 	{
@@ -208,7 +246,6 @@ Macierz Macierz::operator+(const Macierz& ingredient) const
 	}
 
 	//std::cout << '\n';
-	//sum.writeOut();
 	//std::cout << '\n';
 
 	Element* tempEl;
@@ -320,6 +357,90 @@ Macierz Macierz::operator*(const double d) const
 	return product;
 
 
+}
+
+Macierz& Macierz::operator=(const Macierz& M)
+{
+	std::cout << "Assignment operator called " << std::endl;
+
+	// adjust target matrix size
+	if(this->colNumber_ != M.colNumber_ )
+	{
+		int difCol = this->colNumber_ - M.colNumber_;
+		if (difCol > 0)
+		{
+			for (int i = 0; i < difCol; i++)
+			{
+				this->deleteCol();
+			}
+		}
+		else
+		{
+			for (int i = 0; i > difCol; i--)
+			{
+				this->addColumn();
+			}
+		}
+	}
+
+	if (this->rowNumber_ != M.rowNumber_)
+	{
+		int difRow = this->rowNumber_ - M.rowNumber_;
+		if (difRow > 0)
+		{
+			for (int i = 0; i < difRow; i++)
+			{
+				this->deleteRow();
+			}
+		}
+		else
+		{
+			for (int i = 0; i > difRow; i--)
+			{
+				this->addRow();
+			}
+		}
+	}
+
+
+
+	for (int r = 1; r <= M.rowNumber_; r++) //wsp. elementów od 1 do rowNumber_
+	{
+		for (int c = 1; c <= M.colNumber_; c++) //wsp. elementów od 1 do colNumber_
+		{
+
+			this->writeOutEl(r, c)->setVal(M.getElVal(r, c));
+		}
+	}
+
+
+	return *this;
+
+}
+
+Macierz::Macierz(const Macierz& M) : firstElement_(new Element(0)), rowNumber_(1), colNumber_(1)
+{
+	std::cout << "Copy operator called " << std::endl;
+
+
+	for (int r = 1; r < M.rowNumber_; r++)
+	{
+		this->addRow();
+	}
+	for (int c = 1; c < M.colNumber_; c++)
+	{
+		this->addColumn();
+	}
+
+
+	for (int r = 1; r <= M.rowNumber_; r++) //wsp. elementów od 1 do rowNumber_
+	{
+		for (int c = 1; c <= M.colNumber_; c++) //wsp. elementów od 1 do colNumber_
+		{
+
+			this->writeOutEl(r, c)->setVal(M.getElVal(r, c));
+		}
+	}
 }
 
 

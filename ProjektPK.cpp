@@ -62,7 +62,9 @@ int main()
     std::cout << "\n";
     m2.writeOut();
 
-    Macierz m3 = m1 * m2;
+
+
+    Macierz m3 =  m1 * m2;
 
     std::cout << "\n";
     m3.writeOut();
@@ -73,7 +75,9 @@ int main()
     m3.writeOut();
 
 
-    //element* e = m.writeOutEl(3, 4);
-    //std::cout << "\n element:"  << e->getVal();
-
+	Macierz m4 = Macierz(0);
+    m4 = m1;
+    std::cout << "\n M4 \n";
+    m4.writeOut();
+    
 }

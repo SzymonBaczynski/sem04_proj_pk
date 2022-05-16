@@ -12,7 +12,9 @@ private:
 	int colNumber_ = 0;
 
 public:
+	Macierz();
 	Macierz(double firstElVal);
+	~Macierz();
 
 	void addRow();
 	void addRow(std::vector<double> const &newElVal);
@@ -33,9 +35,9 @@ public:
 	Macierz operator-(const Macierz& ingredient) const;
 	Macierz operator*(const Macierz& ingredient) const;
 	Macierz operator*(const double d) const;
+	Macierz& operator=(const Macierz& M);
+	Macierz(const Macierz& M);
 	
-
-	// TODO: mno¿enie skalar macierz
 	// TODO: dekonstruktor
 
 
