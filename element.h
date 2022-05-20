@@ -10,7 +10,6 @@ private:
 
 public:
 	Element(double value);
-	~Element();
 
 
 	Element(double value, Element* up, Element* right, Element* down, Element* left);

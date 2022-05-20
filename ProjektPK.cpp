@@ -6,7 +6,6 @@
 
 int main()
 {
-    std::cout << "Hello World!\n";
 
     Macierz m = Macierz(10.8);
     m.addColumn();
@@ -33,51 +32,51 @@ int main()
     m.addColumn();
     m.addRow();
 
-
-    m.writeOut();
-
-    
+    m.writeOut();    
     std::cout << "\n";
 
     Macierz m1 = Macierz(11);
     m1.addRow({ 2 });
-    m1.addRow({ 2 });
-    m1.addRow({ 2 });
-    m1.addColumn({ 2,2,0,2 });
-    m1.addColumn({ 2,2,0,2 });
-    m1.addColumn({ 2,2,0,2 });
+    m1.addColumn({ 2,8.45});
+    m1.addColumn({ 2.34,2});
+    m1.addColumn({ 2,0});
 
     Macierz m2 = Macierz(11.43);
+    m2.addRow({ 4.89 });
     m2.addRow({ 2 });
     m2.addRow({ 2 });
-    m2.addRow({ 2 });
-    m2.addColumn({ 2,2,2,12 });
-    m2.addColumn({ 0,0,0,12 });
-    m2.addColumn({ 2,6,2,12 });
+    m2.addColumn({ 2,3.67,2,12 });
+    m2.addColumn({ 0.1,0,0,12.45 });
 
-    std::cout << "\n";
+    std::cout << "\nM1:\n";
     m1.writeOut();
 
-       
-    std::cout << "\n";
+    std::cout << "\nM2:\n";
     m2.writeOut();
 
+    Macierz m3 =  m2 * m1;
+    std::cout << "\nM3 = M2 * M1\n";
+    m3.writeOut();
 
-
-    Macierz m3 =  m1 * m2;
-
-    std::cout << "\n";
+    m3 = m1 * m2;
+    std::cout << "\nM3 = M1 * M2\n";
     m3.writeOut();
 
     m3 = m3 * 10.0;
-
-    std::cout << "\n";
+    std::cout << "\nM3*10:\n";
     m3.writeOut();
 
+    m3 = m1 + m1;
+    std::cout << "\nM1 + M1:\n";
+    m3.writeOut();
+
+    m3 = m1 - m1;
+    std::cout << "\nM1 - M1:\n";
+    m3.writeOut();
 
 	Macierz m4 = Macierz(0);
     m4 = m1;
-    std::cout << "\n M4 \n";
+    std::cout << "\nM4 = M1:\n";
     m4.writeOut();
     
 }

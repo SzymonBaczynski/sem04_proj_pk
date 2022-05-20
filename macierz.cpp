@@ -8,15 +8,6 @@ Macierz::Macierz(double firstElVal) : firstElement_(new Element(firstElVal)),
 
 Macierz::~Macierz()
 {
-	// for (int r = rowNumber_; r > 0; r--) //wsp. elementów od 1 do rowNumber_
-	// {
-	// 	for (int c = colNumber_; c > 0; c--) //wsp. elementów od 1 do colNumber_
-	// 	{	
-	// 		delete writeOutEl(r, c);
-	// 		std::cout << "usunieto el";
-	// 	}
-	// }
-
 	Element* firstElInRow = firstElement_;
 	Element* tempEl;
 	Element* tempEl2;
@@ -38,7 +29,7 @@ Macierz::~Macierz()
 		currentElement = tempEl2;
 	}
 
-	std::cout << " <del-macierz> ";	
+	//std::cout << " <del-macierz> ";	
 }
 
 void Macierz::addRow()
@@ -89,8 +80,6 @@ void Macierz::addRow(std::vector<double> const &newElVal)
 		lastRowEl->setVal(val);
 		lastRowEl = lastRowEl->getRight();
 	}
-	
-
 }
 
 void Macierz::addColumn()
@@ -105,7 +94,7 @@ void Macierz::addColumn()
 
 	for (int i = 0; i < rowNumber_; i++)
 	{
-		newEl = new Element(0); // wartosc do zmainy
+		newEl = new Element(0); 
 
 		newEl->setLeft(lastColEl);
 		lastColEl->setRight(newEl);
@@ -361,7 +350,7 @@ Macierz Macierz::operator*(const double d) const
 
 Macierz& Macierz::operator=(const Macierz& M)
 {
-	std::cout << "Assignment operator called " << std::endl;
+	//std::cout << "Assignment operator called " << std::endl;
 
 	// adjust target matrix size
 	if(this->colNumber_ != M.colNumber_ )
@@ -420,8 +409,7 @@ Macierz& Macierz::operator=(const Macierz& M)
 
 Macierz::Macierz(const Macierz& M) : firstElement_(new Element(0)), rowNumber_(1), colNumber_(1)
 {
-	std::cout << "Copy operator called " << std::endl;
-
+	//std::cout << "Copy operator called " << std::endl;
 
 	for (int r = 1; r < M.rowNumber_; r++)
 	{
